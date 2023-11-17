@@ -9,12 +9,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public class MemberService { // ctrl + shift + T :
 
     private final MemberRepository memberRepository;
 
-    @Autowired // Controller 에서와 마찬가지로 의존성 주입
+    // Controller 에서와 마찬가지로 의존성 주입
     public MemberService(MemberRepository memberRepository) { // constructor : alt + insert
         this.memberRepository = memberRepository;
     }

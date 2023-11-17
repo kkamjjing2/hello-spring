@@ -4,9 +4,10 @@ import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-@Controller
 // Spring 컨테이너라는 Spring 통이 생기는데, @Controller 라는 애너테이션을 적으면 MemberController 라는 객체를 생성해서 Spring 에 널어두고 관리한다.
 // Spring 컨테이너에서 Spring Bean 이 관리된다고 표현한다.
+
+@Controller
 public class MemberController {
 
     private final MemberService memberService;
