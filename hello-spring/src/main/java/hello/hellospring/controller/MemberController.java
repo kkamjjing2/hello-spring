@@ -1,8 +1,14 @@
 package hello.hellospring.controller;
 
+import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 // Spring 컨테이너라는 Spring 통이 생기는데, @Controller 라는 애너테이션을 적으면 MemberController 라는 객체를 생성해서 Spring 에 널어두고 관리한다.
 // Spring 컨테이너에서 Spring Bean 이 관리된다고 표현한다.
@@ -37,4 +43,25 @@ public class MemberController {
 //        this.memberService = memberService;
 //    }
 
+    @GetMapping("/members/new")
+    public String createForm() {
+        return "members/createMemberForm";
+    }
+
+    @PostMapping("/members/new")
+    public String create(MemberForm memberForm) {
+        Member member = new Member();
+        member.setName(memberForm.getName());
+
+        memberService.join(member);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/members")
+    public String membersList(Model model) {
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList";
+    }
 }
